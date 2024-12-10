@@ -126,7 +126,7 @@ while place_order:
                 menu_selection = int(menu_selection)
                 # print(list(menu_items.keys))
                 # 4. Check if the menu selection is in the menu items
-                if menu_selection <= len(list(menu_items.keys())): #rework this section to search list for number
+                if menu_selection in menu_items.keys(): #rework this section to search list for number
                     # Store the item name as a variable
                     selected_item_name = menu_items[menu_selection]["Item name"]
 
@@ -151,7 +151,7 @@ while place_order:
 
                 # Tell the customer they didn't select a menu option
             else:
-                print("Invalid input: not a number")
+                print("Invalid input: not a positive number")
 
         else:
             # Tell the customer they didn't select a menu option
@@ -213,10 +213,6 @@ for i in range(0, len(order)):
 # 11. Calculate the cost of the order using list comprehension
 # Multiply the price by quantity for each item in the order list, then sum()
 # and print the prices.
-order_prices = [value for dictionary in order for key, value in dictionary.items() if key == "Price"]
-print(order_prices)
+order_total = sum([dictionary["Price"] * dictionary["Quantity"] for dictionary in order])
 
-
-
-# https://www.geeksforgeeks.org/python-list-comprehension/
-# https://www.geeksforgeeks.org/python-dictionary-comprehension/
+print(f'Your order comes to a total of ${order_total:.2f}.')
